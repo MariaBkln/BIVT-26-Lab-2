@@ -126,19 +126,46 @@ namespace Lab2
             double SY = 0;
 
             // code here
-            for (double x = a; x <= b + 0.5 * h; x += h)
+            
+            
+
+
+            for (double x = a; x <= b + 1E-9; x += h)
             {
-                double t = x;
-                double curSum= 0;
-                int i = 0;
-                while (Math.Abs(t) >= 0.0001)
-                {
-                    curSum += t;
-                    i++;
-                    t *= -1 * x * x * (2 * i - 1) / (2 * i + 1);
-                }
-                SS += curSum;
+                
                 SY += Math.Atan(x);
+    
+                
+                double s = 0;
+                int i = 0;
+
+                
+                int sign = 1;
+
+                
+                double x2 = x * x;
+
+                
+                double number = x;
+
+                while (true)
+                {
+                    
+                    s += sign * number;
+
+                    
+                    sign = -sign;
+
+                    
+                    if (number < E)
+                        break;
+                    i++;
+
+                    
+                    number *= x2 * (2 * i - 1) / (2 * i + 1);
+                }
+
+                SS += s;
             }
             // end
 
